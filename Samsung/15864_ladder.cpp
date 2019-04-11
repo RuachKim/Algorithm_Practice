@@ -1,5 +1,6 @@
 #include<cstdio>
 int N, M, H, ret = 1e5, map[31][11];
+// Check if the ladder is designed as it planned.
 bool chk(){
     for (int i = 1, pos; i <= N; i++){
         pos = i;
@@ -11,8 +12,9 @@ bool chk(){
     }
     return true;
 }
+// Backtracking with trial and error - Full Search
 void func(int cnt, int x, int y){
-    if (cnt >= ret) return;
+    if (cnt >= ret) return; // Find minimum
     if (chk()){
         ret = cnt;
         return;
@@ -23,6 +25,7 @@ void func(int cnt, int x, int y){
             j++;
             continue;
         }
+	// else if no road to cross to the other pole.
         map[i][j] = 1;
         func(cnt + 1, j + 2, i);
         map[i][j] = 0;
